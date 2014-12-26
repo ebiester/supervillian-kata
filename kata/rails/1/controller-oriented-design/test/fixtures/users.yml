@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+juniorSupport:
+  id: 1
+  username: juniorSupport
+  role: juniorSupport 
+
+seniorSupport:
+  id: 2
+  username: seniorSupport
+  role: seniorSupport
+
+villian:
+  id: 3
+  username: villian
+  role: villian
+
+supervillian:
+  id: 4
+  username: supervillian
+  role: supervillian
+
