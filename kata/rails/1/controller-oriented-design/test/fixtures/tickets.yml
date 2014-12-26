@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submitter: 
+  assigned: 
+  title: 
+  description: MyText
+
+two:
+  submitter: 
+  assigned: 
+  title: 
+  description: MyText
