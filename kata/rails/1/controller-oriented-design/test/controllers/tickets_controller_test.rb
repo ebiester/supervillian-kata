@@ -1,7 +1,8 @@
-require 'test_helper'
+require 'spec_helper'
 
-class TicketsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+describe 'TicketsController', "#add" do
+  it "can add a new ticket" do
+    x = 1
+    expect(x).to eq(1)
+  end
 end
