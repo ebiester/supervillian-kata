@@ -20,10 +20,12 @@ This is the spec for Kata 1:
 Users: 
 * There are two types of ticket submitters: Supervillians and Villians, 
 * There are two types of support employees: Junior and Senior.
+* Users have a username.
 
 Assigning Tickets:
+* Tickets have a submitting user, assigned user, title and description.
 * Tickets from Supervillians may not be assigned to junior support employees. 
-* A new ticket is automatically assigned to a support employee when a previous ticket is closed. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult.)
+* A new ticket is automatically assigned to a support employee when a previous ticket is closed and a new ticket is available. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
 * Support employees are immediately assigned a ticket if one is available when they are added.
 * When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket.
 
@@ -35,11 +37,7 @@ ___
 
 The spec for Kata 2 is dependent on Kata 1. 
 
-Users: 
-* Users have a username.
-
 Tickets:
-* Tickets have a submitting user, assigned user, title and description.
 * Tickets have three states: Not started, started, and completed.
 * Tickets cannot go backward. (That is, once started, can not go back to open.
  Once completed, cannot go back to started.)
