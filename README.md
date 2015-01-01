@@ -25,9 +25,9 @@ Users:
 Assigning Tickets:
 * Tickets have a submitting user, assigned user, title and description.
 * Tickets from Supervillians may not be assigned to junior support employees. 
+* When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket.
 * A new ticket is automatically assigned to a support employee when a previous ticket is closed and a new ticket is available. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
 * Support employees are immediately assigned a ticket if one is available when they are added.
-* When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket.
 
 Ticket Prioritization: Implement in this order.
 * Tickets are assigned oldest to newest within the priority groups. (That is all priority 1 will be assigned before priority 2, before 3, subject to the assigning tickets restrictions.
