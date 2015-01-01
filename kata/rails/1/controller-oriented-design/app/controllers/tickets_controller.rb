@@ -5,6 +5,7 @@ class TicketsController < ApplicationController
     user = User.find_by(username: params[:user])
     ticket.submitter = user
     ticket.title = params[:title]
+    ticket.description = params[:description]
     ticket.save
 
     render nothing: true
