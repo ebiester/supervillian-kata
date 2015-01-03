@@ -1,0 +1,22 @@
+FactoryGirl.define do
+  factory :juniorsupport do
+    username "juniorSupportTech"
+    role "juniorSupport"
+  end
+
+  factory :seniorsupport do
+    username "seniorSupportTech"
+    role "seniorSupport"
+  end
+
+  factory :villian do
+    username "villianUser"
+    role "villian"
+  end
+
+  factory :supervillian do
+    username "supervillianUser"
+    role "supervillian"
+  end
+end
+
