@@ -1,10 +1,10 @@
-require 'byebug'
+#require 'byebug'
 
 class Ticket < ActiveRecord::Base
   belongs_to :submitter, class_name: User
   belongs_to :assigned, class_name: User
 
-  # A smart application would put this in its own falidator.
+  # A smart application would put this in its own validator.
   validate do |ticket|
     if submitter_role_is_supervillian and assigned_role_is_junior
       ticket.errors.add(:assigned, 'A supervillian ticket must be assigned to senior support staff')

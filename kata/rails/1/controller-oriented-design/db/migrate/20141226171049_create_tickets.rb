@@ -1,8 +1,8 @@
 class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
-      t.string :submitter_id
-      t.string :assigned_id
+      t.integer :submitter_id
+      t.integer :assigned_id
       t.string :title
       t.text :description
 

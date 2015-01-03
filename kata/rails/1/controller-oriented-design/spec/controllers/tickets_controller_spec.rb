@@ -19,4 +19,20 @@ describe TicketsController do
     expect(newticket.submitter).to eq(villian)
   end
 
+  it 'will assign an eligible ticket to an open employee' do
+    villian = User.find_by(username: 'villian')
+    title = 'title'
+    description = 'description'
+
+    params = {:user => villian.username, 
+              :title => title,
+              :description => description }
+
+    post 'create', params
+
+    newticket = Ticket.find_by(title: title)
+    expect(newticket.assigned).to be_an_instance_of(User)
+    expect(newticket.assigned.current_ticket).to eql(newticket)
+  end
+
 end
