@@ -24,6 +24,7 @@ Users:
 
 Assigning Tickets:
 * Tickets have a submitting user, assigned user, title and description.
+* Tickets have three states: Not started, started, and completed.
 * Tickets from Supervillians may not be assigned to junior support employees. 
 * When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket.
 * A new ticket is automatically assigned to a support employee when a previous ticket is closed and a new ticket is available. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
@@ -38,9 +39,9 @@ ___
 The spec for Kata 2 is dependent on Kata 1. 
 
 Tickets:
-* Tickets have three states: Not started, started, and completed.
-* Tickets cannot go backward. (That is, once started, can not go back to open.
- Once completed, cannot go back to started.)
+* Open tickets can only be placed in progress. 
+* In progress tickets may only be closed. 
+* Closed tickets cannot be reopened.
 
 Validation:
 * Usernames must be unique.
