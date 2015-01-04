@@ -25,7 +25,8 @@ Users:
 Assigning Tickets:
 * Tickets have a submitting user, assigned user, title and description.
 * Tickets have three states: Not started, started, and completed.
-* Tickets from Supervillians may not be assigned to junior support employees. 
+* Tickets from Supervillians may not be assigned to junior support employees.
+* Employees are assigned one ticket at a time.
 * When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket. if no eligible employees are available, this wil be unassigned.
 * A ticket is automatically assigned to a support employee when a previous ticket is completed and a ticket is unassigned in the system. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
 
@@ -34,12 +35,14 @@ ___
 The spec for Kata 2 is dependent on Kata 1. 
 
 Ticket Prioritization: Implement in this order.
-* Tickets are assigned oldest to newest within the priority groups. (That is all priority 1 will be assigned before priority 2, before 3, subject to the assigning tickets restrictions.
+* Tickets are assigned oldest to newest within the priority groups. (That is all priority 1 will be assigned before priority 2, subject to the assigning tickets restrictions.
 * Tickets from Supervillians of any age are in priority class one.
 * Tickets from Villains are of priority class two, until they have been outstanding for one week, on which they become priority class one.
-___
 
-The spec for Kata 3 is dependent on Kata 2. 
+* Senior support employees are now responsible for two tickets at a time instead of one.
+___ 
+
+The spec for Kata 3 is dependent on Kata 2 and is a front end companion.
 
 Tickets:
 * Open tickets can only be placed in progress. 
@@ -47,20 +50,12 @@ Tickets:
 * Closed tickets cannot be reopened.
 
 Validation:
-* Usernames must be unique.
 * Tickets must have submitting users, titles, and descriptions.
 
 View behavior:
-* If logged in, you may view all of your past and present tickets as a list.
+* If logged in, you may view all of your past and present tickets.
 * As a villian or supervillian, you may enter a new ticket.
-* As a villian or supervillian, you may edit an open ticket. 
-
-___ 
-
-The spec for Kata 4 is dependent on Kata 3.
-
-* There is a new user type: Minions. Minions are on a Supervillian's account.
-* As a minion, you may open a new ticket.
-* As a minion, your tickets are originally given the same priority as
-  Villains, but they do not ever escalate in priority.
+* As a villian or supervillian, you may edit an open ticket.
+* As a support user, you may edit your current ticket to place in progress or close.
+* As a support user, you may add comments to a ticket.
 
