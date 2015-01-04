@@ -39,8 +39,9 @@ Ticket Prioritization: Implement in this order.
 * Tickets from Supervillians of any age are in priority class one.
 * Tickets from Villains are of priority class two, until they have been outstanding for one week, on which they become priority class one.
 
-* Senior support employees are now responsible for two tickets at a time instead of one.
-___ 
+* Senior support employees are now responsible for two tickets at a time instead of one. There are already assigned tickets in the system and this should stay stable.
+** This will be adjusted again shortly, so the system should support an arbitrary number of tickets in the future.
+___  
 
 The spec for Kata 3 is dependent on Kata 2 and is a front end companion.
 
