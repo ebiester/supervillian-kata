@@ -7,12 +7,21 @@ class TicketsController < ApplicationController
     ticket.title = params[:title]
     ticket.description = params[:description]
     ticket.assigned = get_eligible_support_member_if_available(ticket)
+    ticket.status = 'Open'
     ticket.save!
     if ticket.assigned
       user = ticket.assigned
       user.current_ticket = ticket
       user.save!
     end
+
+    render nothing: true
+  end
+  
+  def update
+    ticket = Ticket.find(params[:id])
+    ticket.status = params[:status]
+    ticket.save!
 
     render nothing: true
   end
@@ -29,4 +38,5 @@ class TicketsController < ApplicationController
     User.where("current_ticket_id is ? and role IN (?)", 
                nil, roles).take
   end
+
 end

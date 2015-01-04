@@ -24,6 +24,7 @@ describe TicketsController do
 
     expect(newticket.title).to eq(@title)
     expect(newticket.description).to eq(@description)
+    expect(newticket.status).to eq('Open')
     expect(newticket.submitter).to eq(villian)
   end
 
@@ -58,5 +59,20 @@ describe TicketsController do
       to eql(newticket)
   end
 
-  it 'will update the state from open to in progress when updating the ticket'
+  it 'will update the state of the ticket when updating the ticket' do
+    villian = create(:villian)
+    create(:juniorsupport)
+    IN_PROGRESS_STATUS = 'In Progress'
+
+    newticket = createTicket(villian)
+
+    params = { status: IN_PROGRESS_STATUS,
+               id: newticket.id }
+
+    put 'update', params
+
+    updatedticket = Ticket.find_by(title: @title)
+
+    expect(updatedticket.status).to eql(IN_PROGRESS_STATUS)
+  end
 end
