@@ -1,0 +1,276 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.769290"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.769290"], ["username", "villianUser"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.772375"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.772375"], ["username", "juniorSupportTech"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["assigned_id", 2], ["created_at", "2015-01-04 04:58:27.787078"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.787078"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2[0m  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.788914"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.796033"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.796033"], ["username", "villianUser"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.797127"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.797127"], ["username", "juniorSupportTech"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["assigned_id", 2], ["created_at", "2015-01-04 04:58:27.800247"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.800247"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2[0m  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.801515"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.806329"], ["role", 4], ["updated_at", "2015-01-04 04:58:27.806329"], ["username", "supervillianUser"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.807499"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.807499"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"supervillianUser", "title"=>"title", "description"=>"description"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."username" = 'supervillianUser' LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (2))  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tickets" ("created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.810557"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.810557"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.813857"], ["role", 4], ["updated_at", "2015-01-04 04:58:27.813857"], ["username", "supervillianUser"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.814950"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.814950"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.815939"], ["role", 2], ["updated_at", "2015-01-04 04:58:27.815939"], ["username", "seniorSupportTech"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"supervillianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'supervillianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["assigned_id", 3], ["created_at", "2015-01-04 04:58:27.818865"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.818865"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 3[0m  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.820094"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.824410"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.824410"], ["username", "villianUser"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.826015"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.826015"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["assigned_id", 2], ["created_at", "2015-01-04 04:58:27.829219"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.829219"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.830542"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 1]]
+Processing by TicketsController#update as HTML
+  Parameters: {"status"=>"active", "id"=>"1"}
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "tickets" SET "status" = ?, "updated_at" = ? WHERE "tickets"."id" = 1  [["status", 1], ["updated_at", "2015-01-04 04:58:27.833502"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.8ms)
+  [1m[35mTicket Load (0.1ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."title" = 'title' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.840226"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.840226"], ["username", "villianUser"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.841372"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.841372"], ["username", "juniorSupportTech"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["assigned_id", 2], ["created_at", "2015-01-04 04:58:27.844539"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.844539"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2[0m  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.845782"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+Processing by TicketsController#update as HTML
+  Parameters: {"status"=>"closed", "id"=>"1"}
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "tickets" SET "status" = ?, "updated_at" = ? WHERE "tickets"."id" = 1[0m  [["status", 2], ["updated_at", "2015-01-04 04:58:27.848717"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTicket Load (0.2ms)[0m  SELECT  "tickets".* FROM "tickets" INNER JOIN "users" ON "users"."id" = "tickets"."submitter_id" WHERE (assigned_id is NULL and users.role in (3) )  ORDER BY "tickets"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2  [["current_ticket_id", nil], ["updated_at", "2015-01-04 04:58:27.854905"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+  [1m[35mTicket Load (0.2ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."title" = 'title' LIMIT 1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.859151"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.859151"], ["username", "villianUser"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.860256"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.860256"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["assigned_id", 2], ["created_at", "2015-01-04 04:58:27.863365"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.863365"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.864645"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 1]]
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.867856"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.867856"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+  [1m[35mTicket Load (0.1ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 2]]
+Processing by TicketsController#update as HTML
+  Parameters: {"status"=>"closed", "id"=>"1"}
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.0ms)[0m  UPDATE "tickets" SET "status" = ?, "updated_at" = ? WHERE "tickets"."id" = 1  [["status", 2], ["updated_at", "2015-01-04 04:58:27.871036"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT  "tickets".* FROM "tickets" INNER JOIN "users" ON "users"."id" = "tickets"."submitter_id" WHERE (assigned_id is NULL and users.role in (3) )  ORDER BY "tickets"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 2[0m  [["current_ticket_id", 2], ["updated_at", "2015-01-04 04:58:27.872779"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "tickets" SET "assigned_id" = ?, "updated_at" = ? WHERE "tickets"."id" = 2[0m  [["assigned_id", 2], ["updated_at", "2015-01-04 04:58:27.873990"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.877685"], ["role", 3], ["updated_at", "2015-01-04 04:58:27.877685"], ["username", "villianUser"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.878770"], ["role", 4], ["updated_at", "2015-01-04 04:58:27.878770"], ["username", "supervillianUser"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.879658"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.879658"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"villianUser", "title"=>"title", "description"=>"description"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."username" = 'villianUser' LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (1,2))  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tickets" ("assigned_id", "created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["assigned_id", 3], ["created_at", "2015-01-04 04:58:27.882547"], ["description", "description"], ["submitter_id", 1], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.882547"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 3  [["current_ticket_id", 1], ["updated_at", "2015-01-04 04:58:27.883986"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 1]]
+Processing by TicketsController#create as HTML
+  Parameters: {"user"=>"supervillianUser", "title"=>"title", "description"=>"description"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'supervillianUser' LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE (current_ticket_id is NULL and role IN (2))  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("created_at", "description", "submitter_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.888168"], ["description", "description"], ["submitter_id", 2], ["title", "title"], ["updated_at", "2015-01-04 04:58:27.888168"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1  [["id", 2]]
+Processing by TicketsController#update as HTML
+  Parameters: {"status"=>"closed", "id"=>"1"}
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets"  WHERE "tickets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "tickets" SET "status" = ?, "updated_at" = ? WHERE "tickets"."id" = 1  [["status", 2], ["updated_at", "2015-01-04 04:58:27.891604"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT  "tickets".* FROM "tickets" INNER JOIN "users" ON "users"."id" = "tickets"."submitter_id" WHERE (assigned_id is NULL and users.role in (3) )  ORDER BY "tickets"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "users" SET "current_ticket_id" = ?, "updated_at" = ? WHERE "users"."id" = 3[0m  [["current_ticket_id", nil], ["updated_at", "2015-01-04 04:58:27.893265"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-01-04 04:58:27.896697"], ["role", 4], ["updated_at", "2015-01-04 04:58:27.896697"], ["username", "supervillianUser"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "role", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-01-04 04:58:27.897855"], ["role", 1], ["updated_at", "2015-01-04 04:58:27.897855"], ["username", "juniorSupportTech"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
