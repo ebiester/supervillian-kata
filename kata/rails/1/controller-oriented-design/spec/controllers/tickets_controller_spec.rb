@@ -40,7 +40,7 @@ describe TicketsController do
     expect(newticket.assigned.current_ticket).to eql(newticket)
   end
 
-  it 'will not assign a ticket to a junior staff if the ticket is from a supervillian' do
+  it 'will not assign a ticket to a junior support member if the ticket is from a supervillian' do
     create(:supervillian)
     create(:juniorsupport)
 
@@ -56,6 +56,26 @@ describe TicketsController do
 
     newticket = Ticket.find_by(title: title)
     expect(newticket.assigned).to be_nil
+  end
+
+    it 'will assign a ticket to a senior support member if the ticket is from a supervillian' do
+    create(:supervillian)
+    create(:juniorsupport)
+    create(:seniorsupport)
+
+    supervillian = User.find_by(role: 'supervillian')
+    title = 'title'
+    description = 'description'
+
+    params = {:user => supervillian.username, 
+              :title => title,
+              :description => description }
+
+    post 'create', params
+
+    newticket = Ticket.find_by(title: title)
+    expect(newticket.assigned.role).to eql('seniorSupport')
+    expect(newticket.assigned.current_ticket).to eql(newticket)
   end
 
 
