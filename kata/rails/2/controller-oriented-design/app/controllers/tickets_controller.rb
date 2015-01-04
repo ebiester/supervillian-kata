@@ -40,7 +40,18 @@ class TicketsController < ApplicationController
   def get_next_ticket(assigned_user)
     eligible_roles = get_eligible_ticket_roles(assigned_user)
     
-    Ticket.joins(:submitter).where("assigned_id is ? and users.role in (?) ", nil, eligible_roles).first
+    open_tickets = Ticket.joins(:submitter).
+      where("assigned_id is ? and users.role in (?) ",
+            nil,
+            eligible_roles).all
+
+    first_priority_tickets = open_tickets.find_all do |ticket| 
+      ticket.submitter.supervillian?
+    end
+
+    next_ticket_list = first_priority_tickets.empty? ? open_tickets : first_priority_tickets
+
+    next_ticket_list.sort_by{|ticket| ticket[:created_by]}.first
   end
 
   def get_eligible_support_member_if_available(ticket)
