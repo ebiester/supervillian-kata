@@ -3,6 +3,7 @@
 class Ticket < ActiveRecord::Base
   belongs_to :submitter, class_name: User
   belongs_to :assigned, class_name: User
+  enum status: [ :open, :active, :closed ]
 
   # A smart application would put this in its own validator.
   validate do |ticket|

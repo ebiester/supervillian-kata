@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
     ticket.title = params[:title]
     ticket.description = params[:description]
     ticket.assigned = get_eligible_support_member_if_available(ticket)
-    ticket.status = 'Open'
+    ticket.open!
     ticket.save!
     if ticket.assigned
       user = ticket.assigned
@@ -22,6 +22,12 @@ class TicketsController < ApplicationController
     ticket = Ticket.find(params[:id])
     ticket.status = params[:status]
     ticket.save!
+
+    if ticket.closed?
+      assigned_user = ticket.assigned
+      assigned_user.current_ticket = nil
+      assigned_user.save!
+    end
 
     render nothing: true
   end

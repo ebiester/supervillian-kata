@@ -24,7 +24,7 @@ describe TicketsController do
 
     expect(newticket.title).to eq(@title)
     expect(newticket.description).to eq(@description)
-    expect(newticket.status).to eq('Open')
+    expect(newticket).to be_open
     expect(newticket.submitter).to eq(villian)
   end
 
@@ -62,17 +62,29 @@ describe TicketsController do
   it 'will update the state of the ticket when updating the ticket' do
     villian = create(:villian)
     create(:juniorsupport)
-    IN_PROGRESS_STATUS = 'In Progress'
 
     newticket = createTicket(villian)
 
-    params = { status: IN_PROGRESS_STATUS,
+    params = { status: :active,
                id: newticket.id }
 
     put 'update', params
 
     updatedticket = Ticket.find_by(title: @title)
 
-    expect(updatedticket.status).to eql(IN_PROGRESS_STATUS)
+    expect(updatedticket).to be_active
+  end
+
+  it 'will clear the assigned support member\'s current ticket if the ticket is being closed and there is no next ticket' do
+    villian = create(:villian)
+    create(:juniorsupport)
+    newticket = createTicket(villian)
+    params = { status: :closed,
+               id: newticket.id }
+
+    put 'update', params
+
+    updatedticket = Ticket.find_by(title: @title)
+    expect(updatedticket.assigned.current_ticket).to be_nil
   end
 end
