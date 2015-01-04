@@ -38,20 +38,40 @@ class TicketsController < ApplicationController
   end
 
   def get_next_ticket(assigned_user)
-    Ticket.where("assigned_id is ?", nil).take
+    eligible_roles = get_eligible_ticket_roles(assigned_user)
+    
+    Ticket.joins(:submitter).where("assigned_id is ? and users.role in (?) ", nil, eligible_roles).first
   end
 
   def get_eligible_support_member_if_available(ticket)
+    roles = get_eligible_support_roles(ticket.submitter)
+    User.where("current_ticket_id is ? and role IN (?)", 
+               nil, roles).first
+  end
+
+  def get_eligible_support_roles(submitter)
     roles = []
-    if ticket.submitter.role == 'supervillian'
+    if submitter.role == 'supervillian'
       roles << 'seniorSupport'
-    elsif ticket.submitter.role == 'villian'
+    elsif submitter.role == 'villian'
       roles << 'juniorSupport'
       roles << 'seniorSupport'
     end
 
-    User.where("current_ticket_id is ? and role IN (?)", 
-               nil, roles).take
+    roles
+  end
+
+  
+  def get_eligible_ticket_roles(assignable_user)
+    roles = []
+    if assignable_user.role == 'juniorSupport'
+      roles << 'villian'
+    elsif assignable_user.role == 'seniorSupport'
+      roles << 'villian'
+      roles << 'supervillian'
+    end
+
+    roles
   end
 
 end
