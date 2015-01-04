@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
         next_ticket.save!
       end
     end
-
+    
     render nothing: true
   end
 
@@ -73,7 +73,6 @@ class TicketsController < ApplicationController
     roles
   end
 
-  
   def get_eligible_ticket_roles(assignable_user)
     roles = []
     if assignable_user.junior_support?
@@ -85,5 +84,4 @@ class TicketsController < ApplicationController
 
     roles
   end
-
 end

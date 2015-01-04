@@ -1,0 +1,2 @@
+This is meant to be a starting point for the supervillian kata part 2 if one wants to treat it as a refactoring exercise I.E. Guilded Rose kata.
+
