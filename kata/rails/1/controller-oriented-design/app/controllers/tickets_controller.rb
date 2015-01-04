@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
     ticket.submitter = user
     ticket.title = params[:title]
     ticket.description = params[:description]
-    ticket.assigned = get_eligible_support_member_if_available
+    ticket.assigned = get_eligible_support_member_if_available(ticket)
     ticket.save!
     if ticket.assigned
       user = ticket.assigned
@@ -17,7 +17,16 @@ class TicketsController < ApplicationController
     render nothing: true
   end
 
-  def get_eligible_support_member_if_available
-    User.where("current_ticket_id is ?", nil).take
+  def get_eligible_support_member_if_available(ticket)
+    roles = []
+    if ticket.submitter.role == 'supervillian'
+      roles << 'seniorSupport'
+    elsif ticket.submitter.role == 'villian'
+      roles << 'juniorSupport'
+      roles << 'seniorSupport'
+    end
+
+    User.where("current_ticket_id is ? and role IN (?)", 
+               nil, roles).take
   end
 end
