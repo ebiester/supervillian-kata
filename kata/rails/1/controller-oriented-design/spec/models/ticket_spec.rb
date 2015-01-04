@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'spec_helper'
-require 'byebug'
 
 describe Ticket do
   it 'can create an acceptable ticket' do
