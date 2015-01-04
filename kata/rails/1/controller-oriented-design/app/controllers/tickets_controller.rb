@@ -15,7 +15,7 @@ class TicketsController < ApplicationController
       user.save!
     end
 
-    render nothing: true
+    render :json => ticket
   end
   
   def update
@@ -25,11 +25,20 @@ class TicketsController < ApplicationController
 
     if ticket.closed?
       assigned_user = ticket.assigned
-      assigned_user.current_ticket = nil
+      next_ticket = get_next_ticket(assigned_user)
+      assigned_user.current_ticket = next_ticket
       assigned_user.save!
+      if next_ticket
+        next_ticket.assigned = assigned_user
+        next_ticket.save!
+      end
     end
 
     render nothing: true
+  end
+
+  def get_next_ticket(assigned_user)
+    Ticket.where("assigned_id is ?", nil).take
   end
 
   def get_eligible_support_member_if_available(ticket)
