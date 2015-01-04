@@ -32,7 +32,7 @@ describe TicketsController do
   end
 
   context "assigning tickets upon opening" do
-    it 'will assign an eligible ticket to an open employee' do
+    it 'assigns an eligible ticket to an open employee' do
       villian_user = create(:villian_user)
       create(:junior_support_user)
       new_ticket = createTicket(villian_user)
@@ -65,7 +65,7 @@ describe TicketsController do
 
   context "updating tickets" do
 
-    it 'will update the state of the ticket when updating the ticket' do
+    it 'updates the state of the ticket when updating the ticket' do
       villian_user = create(:villian_user)
       create(:junior_support_user)
 
@@ -84,7 +84,7 @@ describe TicketsController do
 
   context "updating tickets and assigning" do
 
-    it 'will clear the assigned support_user member\'s current ticket if the ticket is being closed and there is no next ticket' do
+    it 'clears the assigned support_user member\'s current ticket if the ticket is being closed and there is no next ticket' do
       villian_user = create(:villian_user)
       create(:junior_support_user)
       new_ticket = createTicket(villian_user)
@@ -149,7 +149,7 @@ describe TicketsController do
    
     end
 
-    it 'can prioritize supervillian tickets over villian tickets when assigning a new ticket' do
+    it 'prioritizes supervillian tickets over villian tickets younger than a week when assigning a new ticket' do
       villian_user = create(:villian_user)
       supervillian_user = create(:supervillian_user)
       senior_support_user = create(:senior_support_user)
@@ -175,6 +175,35 @@ describe TicketsController do
       senior_support_user.reload
       expect(senior_support_user.current_ticket.id).
         to eql(newer_supervillian_ticket.id)
+
+    end
+
+        it 'prioritizes villian tickets older than a week over younger supervillian tickets when assigning a new ticket' do
+      villian_user = create(:villian_user)
+      supervillian_user = create(:supervillian_user)
+      senior_support_user = create(:senior_support_user)
+      assigned_ticket = 
+        create_ticket_with_date(supervillian_user,
+                                senior_support_user,
+                                2.weeks.ago)
+
+      older_villian_ticket = 
+        create_ticket_with_date(villian_user,
+                                nil,
+                                3.weeks.ago)
+      newer_supervillian_ticket = 
+        create_ticket_with_date(supervillian_user,
+                                nil, 
+                                2.weeks.ago)
+
+      params = { status: :closed,
+                 id: assigned_ticket.id }
+
+      put 'update', params
+
+      senior_support_user.reload
+      expect(senior_support_user.current_ticket.id).
+        to eql(older_villian_ticket.id)
 
     end
   end

@@ -46,7 +46,8 @@ class TicketsController < ApplicationController
             eligible_roles).all
 
     first_priority_tickets = open_tickets.find_all do |ticket| 
-      ticket.submitter.supervillian?
+      ticket.submitter.supervillian? or
+        (ticket.submitter.villian? and ticket.created_at < 2.weeks.ago)
     end
 
     next_ticket_list = first_priority_tickets.empty? ? open_tickets : first_priority_tickets
