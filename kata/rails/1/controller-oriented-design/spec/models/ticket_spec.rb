@@ -4,20 +4,20 @@ require 'byebug'
 
 describe Ticket do
   it 'can create an acceptable ticket' do
-    build(:villian)
+    villian_user = build(:villian_user)
     ticket = Ticket.new
-    ticket.submitter =  User.find_by(username: 'villian')
+    ticket.submitter = villian_user
     ticket.title = "title"
     ticket.description = "description"
     expect(ticket).to be_valid
   end
 
   it 'cannot have a junior support assigned to a supervillian ticket' do
-    create(:supervillian)
-    create(:juniorsupport)
+    supervillian_user = create(:supervillian_user)
+    junior_support_user = create(:junior_support_user)
     ticket = Ticket.new
-    ticket.submitter = User.find_by(role: 'supervillian')
-    ticket.assigned = User.find_by(role: 'juniorSupport')
+    ticket.submitter = supervillian_user
+    ticket.assigned = junior_support_user
     ticket.title = "title"
     ticket.description = "description"
     expect(ticket).to_not be_valid

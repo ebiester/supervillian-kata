@@ -1,22 +1,22 @@
 FactoryGirl.define do
-  factory :juniorsupport, class: User do
+  factory :junior_support_user, class: User do
     username "juniorSupportTech"
-    role "juniorSupport"
+    role 1
   end
 
-  factory :seniorsupport, class: User do
+  factory :senior_support_user, class: User do
     username "seniorSupportTech"
-    role "seniorSupport"
+    role 2
   end
 
-  factory :villian, class: User do
+  factory :villian_user, class: User do
     username "villianUser"
-    role "villian"
+    role 3
   end
 
-  factory :supervillian, class: User do
+  factory :supervillian_user, class: User do
     username "supervillianUser"
-    role "supervillian"
+    role 4
   end
 end
 

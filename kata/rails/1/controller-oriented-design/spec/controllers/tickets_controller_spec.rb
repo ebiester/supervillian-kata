@@ -18,21 +18,21 @@ describe TicketsController do
   end
 
   it "can add a new ticket" do
-    villian = create(:villian)
-    create(:juniorsupport)
+    villian_user = create(:villian_user)
+    create(:junior_support_user)
 
-    new_ticket = createTicket(villian)
+    new_ticket = createTicket(villian_user)
 
     expect(new_ticket.title).to eq(@title)
     expect(new_ticket.description).to eq(@description)
     expect(new_ticket).to be_open
-    expect(new_ticket.submitter).to eq(villian)
+    expect(new_ticket.submitter).to eq(villian_user)
   end
 
   it 'will assign an eligible ticket to an open employee' do
-    villian = create(:villian)
-    create(:juniorsupport)
-    new_ticket = createTicket(villian)
+    villian_user = create(:villian_user)
+    create(:junior_support_user)
+    new_ticket = createTicket(villian_user)
 
     expect(new_ticket.assigned).
       to be_an_instance_of(User)
@@ -40,31 +40,30 @@ describe TicketsController do
       to eql(new_ticket)
   end
 
-  it 'will not assign a ticket to a junior support member if the ticket is from a supervillian' do
-    supervillian = create(:supervillian)
-    create(:juniorsupport)
-    new_ticket = createTicket(supervillian)
+  it 'will not assign a ticket to a junior support_user member if the ticket is from a supervillian_user' do
+    supervillian_user = create(:supervillian_user)
+    create(:junior_support_user)
+    new_ticket = createTicket(supervillian_user)
 
     expect(new_ticket.assigned).to be_nil
   end
 
-  it 'will assign a ticket to a senior support member if the ticket is from a supervillian' do
-    supervillian = create(:supervillian)
-    create(:juniorsupport)
-    create(:seniorsupport)
-    new_ticket = createTicket(supervillian)
+  it 'will assign a ticket to a senior support_user member if the ticket is from a supervillian_user' do
+    supervillian_user = create(:supervillian_user)
+    create(:junior_support_user)
+    create(:senior_support_user)
+    new_ticket = createTicket(supervillian_user)
 
-    expect(new_ticket.assigned.role).
-      to eql('seniorSupport')
+    expect(new_ticket.assigned).to be_senior_support
     expect(new_ticket.assigned.current_ticket).
       to eql(new_ticket)
   end
 
   it 'will update the state of the ticket when updating the ticket' do
-    villian = create(:villian)
-    create(:juniorsupport)
+    villian_user = create(:villian_user)
+    create(:junior_support_user)
 
-    new_ticket = createTicket(villian)
+    new_ticket = createTicket(villian_user)
 
     params = { status: :active,
                id: new_ticket.id }
@@ -76,10 +75,10 @@ describe TicketsController do
     expect(updatedticket).to be_active
   end
 
-  it 'will clear the assigned support member\'s current ticket if the ticket is being closed and there is no next ticket' do
-    villian = create(:villian)
-    create(:juniorsupport)
-    new_ticket = createTicket(villian)
+  it 'will clear the assigned support_user member\'s current ticket if the ticket is being closed and there is no next ticket' do
+    villian_user = create(:villian_user)
+    create(:junior_support_user)
+    new_ticket = createTicket(villian_user)
     params = { status: :closed,
                id: new_ticket.id }
 
@@ -90,35 +89,35 @@ describe TicketsController do
   end
 
   it 'will assign the next ticket if there is an eligible ticket' do
-    villian = create(:villian)
-    juniorsupport = create(:juniorsupport)
-    to_be_closed_ticket = createTicket(villian)
-    next_ticket = createTicket(villian)
+    villian_user = create(:villian_user)
+    junior_support_user = create(:junior_support_user)
+    to_be_closed_ticket = createTicket(villian_user)
+    next_ticket = createTicket(villian_user)
     params = { status: :closed,
                id: to_be_closed_ticket.id }
 
     put 'update', params
 
     next_ticket.reload
-    juniorsupport.reload
-    expect(next_ticket.assigned).to eql(juniorsupport)
-    expect(juniorsupport.current_ticket).to eql(next_ticket)
+    junior_support_user.reload
+    expect(next_ticket.assigned).to eql(junior_support_user)
+    expect(junior_support_user.current_ticket).to eql(next_ticket)
   end
 
-  it 'will not assign a junior support member a supervillian ticket when a junior support member closes a ticket' do
-    villian = create(:villian)
-    supervillian = create(:supervillian)
-    juniorsupport = create(:juniorsupport)
-    to_be_closed_ticket = createTicket(villian)
-    ineligible_ticket = createTicket(supervillian)
+  it 'will not assign a junior support_user member a supervillian_user ticket when a junior support_user member closes a ticket' do
+    villian_user = create(:villian_user)
+    supervillian_user = create(:supervillian_user)
+    junior_support_user = create(:junior_support_user)
+    to_be_closed_ticket = createTicket(villian_user)
+    ineligible_ticket = createTicket(supervillian_user)
     expect(ineligible_ticket.assigned).to be_nil
     params = { status: :closed,
                id: to_be_closed_ticket.id }
 
     put 'update', params
 
-    juniorsupport.reload
+    junior_support_user.reload
     expect(ineligible_ticket.assigned).to be_nil
-    expect(juniorsupport.current_ticket).to be_nil
+    expect(junior_support_user.current_ticket).to be_nil
   end
 end

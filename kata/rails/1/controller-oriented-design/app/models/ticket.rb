@@ -13,10 +13,10 @@ class Ticket < ActiveRecord::Base
   end
 
   def submitter_role_is_supervillian
-    submitter and submitter.role == 'supervillian'
+    submitter and submitter.supervillian?
   end
 
   def assigned_role_is_junior
-    assigned and assigned.role == 'juniorSupport'
+    assigned and assigned.junior_support?
   end
 end  

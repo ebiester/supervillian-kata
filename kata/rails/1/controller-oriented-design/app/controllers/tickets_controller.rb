@@ -51,11 +51,11 @@ class TicketsController < ApplicationController
 
   def get_eligible_support_roles(submitter)
     roles = []
-    if submitter.role == 'supervillian'
-      roles << 'seniorSupport'
-    elsif submitter.role == 'villian'
-      roles << 'juniorSupport'
-      roles << 'seniorSupport'
+    if submitter.supervillian?
+      roles << User.roles[:senior_support]
+    elsif submitter.villian?
+      roles << User.roles[:junior_support]
+      roles << User.roles[:senior_support]
     end
 
     roles
@@ -64,11 +64,11 @@ class TicketsController < ApplicationController
   
   def get_eligible_ticket_roles(assignable_user)
     roles = []
-    if assignable_user.role == 'juniorSupport'
-      roles << 'villian'
-    elsif assignable_user.role == 'seniorSupport'
-      roles << 'villian'
-      roles << 'supervillian'
+    if assignable_user.junior_support?
+      roles << User.roles[:villian]
+    elsif assignable_user.senior_support?
+      roles << User.roles[:villian]
+      roles << User.roles[:supervillian]
     end
 
     roles
