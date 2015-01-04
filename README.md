@@ -26,9 +26,12 @@ Assigning Tickets:
 * Tickets have a submitting user, assigned user, title and description.
 * Tickets have three states: Not started, started, and completed.
 * Tickets from Supervillians may not be assigned to junior support employees. 
-* When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket.
-* A new ticket is automatically assigned to a support employee when a previous ticket is closed and a new ticket is available. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
-* Support employees are immediately assigned a ticket if one is available when they are added.
+* When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket. if no eligible employees are available, this wil be unassigned.
+* A ticket is automatically assigned to a support employee when a previous ticket is completed and a ticket is unassigned in the system. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
+
+___
+
+The spec for Kata 2 is dependent on Kata 1. 
 
 Ticket Prioritization: Implement in this order.
 * Tickets are assigned oldest to newest within the priority groups. (That is all priority 1 will be assigned before priority 2, before 3, subject to the assigning tickets restrictions.
@@ -36,7 +39,7 @@ Ticket Prioritization: Implement in this order.
 * Tickets from Villains are of priority class two, until they have been outstanding for one week, on which they become priority class one.
 ___
 
-The spec for Kata 2 is dependent on Kata 1. 
+The spec for Kata 3 is dependent on Kata 2. 
 
 Tickets:
 * Open tickets can only be placed in progress. 
@@ -54,7 +57,7 @@ View behavior:
 
 ___ 
 
-The spec for Kata 3 is dependent on Kata 2.
+The spec for Kata 4 is dependent on Kata 3.
 
 * There is a new user type: Minions. Minions are on a Supervillian's account.
 * As a minion, you may open a new ticket.
