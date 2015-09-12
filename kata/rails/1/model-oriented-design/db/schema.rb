@@ -14,6 +14,8 @@
 ActiveRecord::Schema.define(version: 20150526002410) do
 
   create_table "users", force: true do |t|
+    t.string "role"
+    t.string "username"
   end
 
 end
