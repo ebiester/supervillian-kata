@@ -1,0 +1,8 @@
+junior:
+  username: junior_support
+  role: :junior_support
+
+senior:
+  username: senior_support
+  role: :senior_support
+    

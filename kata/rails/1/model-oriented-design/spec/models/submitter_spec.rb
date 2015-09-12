@@ -13,9 +13,4 @@ describe Submitter do
     submitter = Submitter.new
     submitter.role = :supervillian
   end
-
-  it 'has a submittername' do
-    submitter = Submitter.new
-    submitter.username = "testSubmitter"
-  end
 end
