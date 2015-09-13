@@ -7,6 +7,10 @@ class EligibleSupportValidator < ActiveModel::Validator
     if junior_support_assigned? && supervillian_ticket?
       @ticket.errors[:employee] << "Junior support cannot work a supervillian's ticket."
     end
+
+    if support_already_has_ticket?
+      @ticket.errors[:employee] << "Employee is already assigned a ticket."
+    end
   end 
 
   def junior_support_assigned?
@@ -15,6 +19,19 @@ class EligibleSupportValidator < ActiveModel::Validator
 
   def supervillian_ticket?
     @ticket.submitter && @ticket.submitter.supervillian?
+  end
+
+  def support_already_has_ticket?
+    assigned_tickets = Ticket.
+      where(state: [Ticket.states["not_started"],
+                    Ticket.states["started"]],
+      employee: @ticket.employee)
+
+    if assigned_tickets.count == 0
+      false
+    else
+      assigned_tickets.first.id != @ticket.id
+    end
   end
 end
 
@@ -27,7 +44,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :submitter
 
   after_initialize do |ticket|
-    ticket.not_started!
+    ticket.state = :not_started
   end
 
   enum state: [:not_started,

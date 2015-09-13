@@ -1,3 +1,4 @@
 unstarted_ticket:
   title: "title"
   description: "description"
+  state: 0
