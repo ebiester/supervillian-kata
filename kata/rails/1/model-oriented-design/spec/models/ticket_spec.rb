@@ -17,4 +17,12 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to be_not_started
   end
 
+  it "cannot be assigned a junior support employee if the submitter is a supervillian" do
+    ticket = Ticket.new
+    ticket.employee = employees(:junior)
+    ticket.submitter = submitters(:supervillian)
+    ticket.valid?
+    expect(ticket.errors[:employee]).to include("Junior support cannot work a supervillian's ticket.")
+  end
+
 end

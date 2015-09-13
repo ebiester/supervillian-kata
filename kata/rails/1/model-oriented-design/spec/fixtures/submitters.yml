@@ -1,9 +1,9 @@
 villian:
   username: villian
-  role: :villian
+  role: 0
 
 supervillian:
-  username: supervillian_support
-  role: :supervillian_support
+  username: supervillian
+  role: 1
     
 

@@ -1,8 +1,8 @@
 junior:
   username: junior_support
-  role: :junior_support
+  role: 0
 
 senior:
   username: senior_support
-  role: :senior_support
+  role: 1
     
