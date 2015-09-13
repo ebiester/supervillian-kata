@@ -26,9 +26,9 @@ Assigning Tickets:
 * Tickets have a submitting user, assigned user, title and description.
 * Tickets have three states: Not started, started, and completed.
 * Tickets from Supervillians may not be assigned to junior support employees.
-* Employees are assigned one ticket at a time.
+* Employees are assigned one non-completed ticket at a time.
 * When a ticket is added, it is assigned to an open employee if an eligible employee does not have a ticket. if no eligible employees are available, this wil be unassigned.
-* A ticket is automatically assigned to a support employee when a previous ticket is completed and a ticket is unassigned in the system. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.)
+* A ticket is automatically assigned to a support employee when a previous ticket is completed. (This is an evil organization, after all, and some of the most valuable clients are... ahem, some of the most difficult. Self organization is not encouraged.) For now, assign the oldest unassigned ticket.
 
 ___
 
