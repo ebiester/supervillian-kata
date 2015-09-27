@@ -19,18 +19,14 @@ class EligibleSupportValidator < ActiveModel::Validator
 
   def supervillian_ticket?
     @ticket.submitter && @ticket.submitter.supervillian?
-  end
+  end 
 
   def support_already_has_ticket?
-    assigned_tickets = Ticket.
-      where(state: [Ticket.states["not_started"],
-                    Ticket.states["started"]],
-      employee: @ticket.employee)
-
-    if assigned_tickets.count == 0
-      false
+    if @ticket.employee
+      assigned_ticket = @ticket.employee.assigned_ticket
+      assigned_ticket && assigned_ticket != @ticket
     else
-      assigned_tickets.first.id != @ticket.id
+      false
     end
   end
 end
@@ -39,6 +35,8 @@ class Ticket < ActiveRecord::Base
   validate do |ticket|
     EligibleSupportValidator.new(ticket).validate
   end
+
+  before_save :assign_to_staff, if: :unassigned?
 
   belongs_to :employee
   belongs_to :submitter
@@ -50,5 +48,13 @@ class Ticket < ActiveRecord::Base
   enum state: [:not_started,
                :started,
                :finished]
+
+  def unassigned? 
+    employee == nil
+  end
+
+  def assign_to_staff
+    self.employee = Employee.available_employee
+  end
 end
 

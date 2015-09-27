@@ -4,13 +4,16 @@ describe Submitter do
     submitter.save!
   end
 
-  it 'can be a villian' do
-    submitter = Submitter.new
-    submitter.role = :villian
-  end
-  
-  it 'can be a supervillian' do
-    submitter = Submitter.new
-    submitter.role = :supervillian
+  context 'Roles' do 
+
+    it 'can be a villian' do
+      submitter = Submitter.new
+      submitter.role = :villian
+    end
+    
+    it 'can be a supervillian' do
+      submitter = Submitter.new
+      submitter.role = :supervillian
+    end
   end
 end
